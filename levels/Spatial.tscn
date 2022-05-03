@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entites/player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="env" type="Spatial" parent="."]
+
+[node name="StaticBody" type="StaticBody" parent="env"]
+
+[node name="ground" type="MeshInstance" parent="env/StaticBody"]
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="env/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.377853, 6.90758 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.0343493, 0.313495, -0.948968, 0.01134, 0.94959, 0.31329, 0.999346, 9.30713e-10, -0.0361728, -19.9462, 10.3455, 0 )
