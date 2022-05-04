@@ -75,10 +75,11 @@ func _physics_process(delta):
 	
 	#make it move
 	velocity = velocity.linear_interpolate(direction * speed, accel * delta)
+	#dash
 	if Input.is_action_just_pressed("dash"):
 		velocity = velocity.linear_interpolate(direction * speed * 4, accel * delta * 15)
 	movement = velocity + gravity_vec
-	
+	#the jump wont work unless we change to move&slide with snap
 	move_and_slide(movement, Vector3.UP)
 
 
