@@ -38,7 +38,7 @@ var movement = Vector3()
 func _ready():
 	pass
 	#hides the cursor
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	#mesh no longer inherits rotation of parent, allowing it to rotate freely
 	#mesh.set_as_toplevel(true)
@@ -50,6 +50,12 @@ func _input(event):
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sense))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
 	
+	# Did not use the ternary operator because it's weird in GDscript
+	if Input.is_action_just_pressed("esc"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	#if Input.is_action_just_pressed("fire"):
 
