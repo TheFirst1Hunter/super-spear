@@ -23,6 +23,8 @@ shape = SubResource( 2 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.377853, 6.90758 )
+speed = 1.0
+max_speed = 1.0
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.0343493, 0.313495, -0.948968, 0.01134, 0.94959, 0.31329, 0.999346, 9.30713e-10, -0.0361728, -19.9462, 10.3455, 0 )
