@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://entites/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entites/spear.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CubeMesh" id=1]
+size = Vector3( 20, 2, 20 )
 
 [sub_resource type="ConvexPolygonShape" id=2]
-points = PoolVector3Array( 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1 )
+points = PoolVector3Array( -10, -1, -10, -10, 1, -10, 10, -1, -10, -10, -1, 10, -10, 1, 10, 10, 1, -10, 10, -1, 10, 10, 1, 10 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -21,10 +23,11 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="env/StaticBody"]
 shape = SubResource( 2 )
 
-[node name="player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.377853, 6.90758 )
-speed = 1.0
-max_speed = 1.0
-
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.0343493, 0.313495, -0.948968, 0.01134, 0.94959, 0.31329, 0.999346, 9.30713e-10, -0.0361728, -19.9462, 10.3455, 0 )
+
+[node name="spear" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.88299, 0 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.15226, 4.04276 )

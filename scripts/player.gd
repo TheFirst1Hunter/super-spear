@@ -12,15 +12,15 @@ var jump = 5
 
 var movement_direction:Vector3
 var spear_path:PackedScene = load("res://entites/spear.tscn")
-var spear
 var picked_spear:bool=true
 
 onready var head:Spatial = $head
 onready var muzzle:Position3D = $head/muzzle
-onready var hand:Position3D = $hand/hand
+onready var hand:Position3D = $head/hand/hand
 onready var ray_cast:RayCast=$head/RayCast
 onready var campivot = $head/Camera
 onready var mesh = $MeshInstance
+onready var spear = $head/hand/spear
 
 
 var cam_accel = 40
@@ -116,11 +116,14 @@ func _physics_process(delta):
 
 
 func shoot():
-	var spear = spear_path.instance()
-	add_child(spear)
+	if ! has_node("head/hand/spear") or !spear.is_picked:
+		return
 	
 	spear.start(hand.global_transform,muzzle.global_transform.origin)
 
 	if(ray_cast.is_colliding()):
 		spear.start(hand.global_transform,ray_cast.get_collision_point())
+	
 	spear.global_transform=hand.global_transform
+
+	spear.throw()
