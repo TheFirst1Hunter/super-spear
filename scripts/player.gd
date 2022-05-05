@@ -12,8 +12,8 @@ var jump = 5
 
 var movement_direction:Vector3
 var spear_path:PackedScene = load("res://entites/spear.tscn")
-var spear:Spear
-var picked_spear:bool=false
+var spear
+var picked_spear:bool=true
 
 onready var head:Spatial = $head
 onready var muzzle:Position3D = $head/muzzle
@@ -36,8 +36,9 @@ var movement = Vector3()
 
 
 func _ready():
+	pass
 	#hides the cursor
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	#mesh no longer inherits rotation of parent, allowing it to rotate freely
 	#mesh.set_as_toplevel(true)
@@ -109,8 +110,8 @@ func _physics_process(delta):
 
 
 func shoot():
-#	var spear:Spear = spear_path.instance()
-#	add_child(spear)
+	var spear = spear_path.instance()
+	add_child(spear)
 	
 	spear.start(hand.global_transform,muzzle.global_transform.origin)
 
