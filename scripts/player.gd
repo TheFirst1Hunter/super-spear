@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name Player
 
 export var speed:float = 10
 export var max_speed:float = 100
@@ -6,6 +7,8 @@ export var mouse_sensitivity:float = 1
 
 var movement_direction:Vector3
 var spear_path:PackedScene = load("res://entites/spear.tscn")
+var spear:Spear
+var picked_spear:bool=false
 
 onready var head:Spatial = $head
 onready var muzzle:Position3D = $head/muzzle
@@ -41,7 +44,7 @@ func _input(event:InputEvent):
 		movement_direction=-transform.basis.x
 		speed = max(speed+1,max_speed)
 	
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") and picked_spear:
 		shoot()
 
 
@@ -51,14 +54,11 @@ func _physics_process(delta:float):
 
 
 func shoot():
-	var spear = spear_path.instance()
-		
-#	spear.start(hand.global_transform,muzzle.global_transform.origin)
-		
-#	if(ray_cast.is_colliding()):
-#		spear.start(hand.global_transform,ray_cast.get_collision_point())
-		
-	add_child(spear)
-	spear.global_transform=hand.global_transform
-	spear.look_at(muzzle.global_transform.origin,Vector3.UP)
+#	var spear:Spear = spear_path.instance()
+#	add_child(spear)
 	
+	spear.start(hand.global_transform,muzzle.global_transform.origin)
+
+	if(ray_cast.is_colliding()):
+		spear.start(hand.global_transform,ray_cast.get_collision_point())
+	spear.global_transform=hand.global_transform
