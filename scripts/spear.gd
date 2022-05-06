@@ -37,6 +37,9 @@ func _on_spear_area_entered(area:Area):
 
 
 func _on_spear_body_entered(body:PhysicsBody):
-	if body is Player:
+	if body.is_in_group("enemies"):
+		print("damaged")
+	elif body is Player:
 		return
-	is_stuck=true
+	else:
+		is_stuck=true

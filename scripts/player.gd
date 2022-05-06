@@ -1,8 +1,8 @@
 extends KinematicBody
 class_name Player
 
-export var speed:float = 40
-export var max_speed:float = 20
+export var speed:float= 40.0
+export var max_speed:float = 20.0
 export var mouse_sensitivity:float = 0.5
 const ACCEL_DEFAULT = 15
 const ACCEL_AIR = 1
@@ -76,7 +76,7 @@ func _input(event):
 	#	movement_direction=-transform.basis.x
 		#speed = max(speed+1,max_speed)
 	
-	if event.is_action_pressed("ui_accept") and picked_spear:
+	if event.is_action_pressed("fire") and picked_spear:
 
 		shoot()
 
